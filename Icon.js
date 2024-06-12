@@ -1,13 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, TouchableOpacity } from "react-native"
+import { TouchableOpacity } from "react-native"
 import { Svg, Path } from "react-native-svg";
 import { findIconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { prefixTypes } from "./config";
 
 const DEFAULT_ICON = "question-circle";
 
-const Icon = ( { name, size, color, type, containerStyle, iconStyle, onPress, activeOpacity } ) => {
+const Icon = ({
+	name = '',
+	size = 20,
+	color = 'black',
+	type = 'regular',
+	activeOpacity = 0.2,
+	containerStyle,
+	iconStyle,
+	onPress
+}) => {
 
   const prefix = prefixTypes[type];
   let icon = findIconDefinition( { prefix, iconName: name } );
@@ -68,14 +77,6 @@ Icon.propTypes = {
     PropTypes.array
   ] ),
   activeOpacity: PropTypes.number
-};
-
-Icon.defaultProps = {
-  name: "",
-  size: 20,
-  color: "black",
-  type: "regular",
-  activeOpacity: 0.2
 };
 
 export default Icon;
